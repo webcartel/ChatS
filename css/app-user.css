@@ -1,10 +1,50 @@
 .chats-user {
-	position: fixed;
-	right: 5px;
-	bottom: 18px;
-	width: 360px;
-	height: 500px;
-	background: #fff;
-	color: #999;
-	border: 1px solid #eee;
-}
+  position: fixed;
+  right: 5px;
+  bottom: 18px;
+  width: 360px;
+  height: 500px;
+  background: #fff;
+  color: #999;
+  border: 1px solid #eee;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden; }
+  .chats-user .header {
+    height: 40px;
+    background: #2C8AD2; }
+    .chats-user .header .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      height: 21px;
+      width: 21px;
+      cursor: pointer;
+      transition: transform 0.3s; }
+      .chats-user .header .close:before, .chats-user .header .close:after {
+        content: '';
+        position: absolute;
+        top: 9px;
+        right: 0;
+        width: 20px;
+        height: 2px;
+        background: #ffffff;
+        transform: rotate(45deg); }
+      .chats-user .header .close:after {
+        transform: rotate(-45deg); }
+      .chats-user .header .close:hover {
+        transform: rotate(180deg); }
+  .chats-user ul {
+    padding: 5px;
+    list-style: none; }
+    .chats-user ul li {
+      margin: 0 0 1px 0;
+      padding: 5px;
+      background: #eee;
+      font: 400 14px/18px Arial,sans-serif; }
+  .chats-user .form {
+    position: absolute;
+    width: 100%;
+    bottom: 0; }
+    .chats-user .form input[type="text"] {
+      display: block;
+      width: 100%; }

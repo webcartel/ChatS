@@ -2,8 +2,10 @@ var chatsUser = new Vue({
 	el: '#chats-user',
 
 	data: {
-		message: 'Content',
+		chatWindowOpen: true,
 		messageList: [
+			{ name: 'test name' },
+			{ name: 'test name' },
 			{ name: 'test name' },
 			{ name: 'test name' },
 			{ name: 'test name' },

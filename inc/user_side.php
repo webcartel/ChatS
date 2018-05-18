@@ -6,7 +6,15 @@ function chats_user_init() {
 }
 
 function chats_app_tag() {
-	echo '<div id="chats-user" class="chats-user"><ul><li v-for="item in messageList">{{ item.name }}</li></ul></div>';
+	echo '
+<div id="chats-user" class="chats-user" v-if="chatWindowOpen">
+	<div class="header"><span class="close" @click="chatWindowOpen = false"></span></div>
+	<ul><li v-for="item in messageList">{{ item.name }}</li></ul>
+	<form action="/" class="form">
+		<input type="text">
+	</form>
+</div>
+';
 }
 
 function chats_user_css_js($value='')
