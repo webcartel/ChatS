@@ -1,18 +1,56 @@
-.chats-user {
+$f1: 'Roboto', sans-serif;
+
+#chats-user {
 	position: fixed;
-	right: 5px;
-	bottom: 18px;
-	width: 360px;
-	height: 500px;
-	background: #fff;
-	color: #999;
-	border: 1px solid #eee;
+	right: 20px;
+	bottom: 20px;
+	z-index: 1000;
+}
+
+.chats-user-window {
+	position: relative;
+	width: 380px;
+	height: 520px;
+	background: #ffffff;
+	// border: 1px solid #2C8AD2;
 	border-radius: 5px 5px 0 0;
 	overflow: hidden;
+	box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.3);
 
 	.header {
+		display: flex;
+		align-items: center;
 		height: 40px;
 		background: #2C8AD2;
+
+		.logo {
+			display: inline-block;
+			margin-left: 5px;
+			width: 30px;
+			height: 30px;
+			background: #fff url(../images/chats-plugin-icon.png) center center no-repeat;
+			border-radius: 50%;
+		}
+
+		.name {
+			position: relative;
+			margin-left: 15px;
+			width: 280px;
+			font: 400 14px/18px $f1;
+			color: #fff;
+			white-space: nowrap;
+			overflow: hidden;
+
+			&:before {
+				content: '';
+				position: absolute;
+				right: 0;
+				top: 0;
+				width: 50px;
+				height: 100%;
+				background: linear-gradient(to right, rgba(255,255,255,0) 0%,#2C8AD2 100%);
+			}
+		}
 
 		.close {
 			position: absolute;
@@ -46,25 +84,109 @@
 	}
 
 	ul {
-		padding: 5px;
+		margin: 0;
+		padding: 5px 10px;
+		height: 402px;
 		list-style: none;
+		overflow-y: auto;
 
 		li {
-			margin: 0 0 1px 0;
-			padding: 5px;
-			background: #eee;
-			font: 400 14px/18px Arial,sans-serif;
+			margin: 0 0 10px 0;
+			padding: 0 50px 0 0;
+			font: 400 13px/18px 'Roboto', sans-serif;
+
+			.message {
+				display: block;
+				padding: 10px;
+				background: #42A5F5;
+				border-radius: 10px;
+				color: #ffffff;
+				box-shadow: -3px 3px 10px 0px #d0d0d0;
+				transition: box-shadow 0.3s;
+
+				&:hover {
+					background: #42A5F5 - 5;
+					box-shadow: -7px 7px 20px 0px #d0d0d0;
+				}
+			}
+
+			&.support {
+				padding: 0 0 0 50px !important;
+
+				.message {
+					background: #ECEFF1 !important;
+					color: #37474F;
+
+					&:hover {
+						background: #ECEFF1 - 5 !important;
+					}
+				}
+			}
 		}
 	}
 
 	.form {
 		position: absolute;
+		padding: 8px 0 0 5px;
 		width: 100%;
+		height: 76px;
 		bottom: 0;
+		background: #2C8AD2;
 
-		input[type="text"] {
+		textarea {
 			display: block;
-			width: 100%;
+			padding: 5px;
+			width: 304px;
+			height: 60px;
+			font: 400 14px/16px Arial,sans-serif;
+			border-radius: 6px;
+			border: none;
+			resize: none;
+		}
+
+		button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: 8px;
+			right: 4px;
+			width: 49px;
+			height: 60px;
+			background: #fff;
+			border-left: 1px solid #CECECE;
+			transition: background 0.3s;
+			border-radius: 6px;
+
+			svg {
+				position: absolute;
+				fill: #2C8AD2;
+			}
+
+			&:hover {
+				background: #eee;
+			}
+		}
+	}
+}
+
+.chats-user-open {
+	position: relative;
+	cursor: pointer;
+
+	.logo {
+		position: relative;
+		display: block;
+		width: 50px;
+		height: 50px;
+		background: #ffffff;
+		background: #ffffff url(../images/chats-plugin-icon.png) center center no-repeat;
+		border-radius: 50%;
+		box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.3);
+		transition: box-shadow 0.3s;
+
+		&:hover {
+			box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
 		}
 	}
 }
