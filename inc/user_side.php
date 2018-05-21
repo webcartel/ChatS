@@ -15,7 +15,7 @@ function chats_app_tag() {
 			<span class="close" @click="chatWindowOpen = false"></span>
 		</div>
 		<ul>
-			<li v-for="item in messageList" v-bind:class="{ support: item.from != item.chat_id }">
+			<li v-for="item in messageList" v-bind:class="{ support: item.from == item.chat_id }">
 				<span class="message" v-html="item.message"></span>
 			</li>
 		</ul>
@@ -66,6 +66,7 @@ function get_messages_list()
 	}
 }
 add_action( 'wp_ajax_get_messages_list', 'get_messages_list' );
+add_action( 'wp_ajax_nopriv_get_messages_list', 'get_messages_list' );
 
 
 // Сохранение сообщения
@@ -87,9 +88,11 @@ function save_user_message()
 	exit();
 }
 add_action( 'wp_ajax_save_user_message', 'save_user_message' );
+add_action( 'wp_ajax_nopriv_save_user_message', 'save_user_message' );
 
 function generate_token()
 {
 	echo md5(microtime() + rand());
 }
 add_action( 'wp_ajax_generate_token', 'generate_token' );
+add_action( 'wp_ajax_nopriv_generate_token', 'generate_token' );

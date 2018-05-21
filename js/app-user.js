@@ -42,6 +42,7 @@ var chatsUser = new Vue({
 			axios.post(chats_ajax.url + '?action=save_user_message', form_data)
 				.then(function (response) {
 					this.getMessagesList()
+					this.message = ''
 				}.bind(this))
 				.catch(function (error) {
 					console.log(error)
