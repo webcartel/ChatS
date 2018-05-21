@@ -15,8 +15,8 @@ function chats_app_tag() {
 			<span class="close" @click="chatWindowOpen = false"></span>
 		</div>
 		<ul>
-			<li v-for="item in messageList" v-bind:class="{ support: item.support }">
-				<span class="message">{{ item.message }}</span>
+			<li v-for="item in messageList" v-bind:class="{ support: item.from != item.chat_id }">
+				<span class="message" v-html="item.message"></span>
 			</li>
 		</ul>
 		<form action="/" class="form">
@@ -76,7 +76,7 @@ function save_user_message()
 	if ( $_POST['message'] != '' ) {
 		$data = array(
 			'from' => $_POST['token'],
-			'to' => 'admin',
+			'to' => get_current_user_id(),
 			'chat_id' => $_POST['token'],
 			'date' => time(),
 			'message' => $_POST['message']

@@ -11,18 +11,25 @@ var chatsUser = new Vue({
 	mounted: function() {
 		this.getToken()
 		this.getMessagesList()
+		this.updateMessageList()
 	},
 
 	methods: {
 		getToken() {
 			if ( this.chatUserToken === null ) {
-				axios.get(chats_ajax.url, {params: {action: 'generate_token'}})
-					.then(function (response) {
-						this.chatUserToken = response.data
-					}.bind(this))
-					.catch(function (error) {
-						console.log(error)
-					})
+				if ( !localStorage.getItem('token') ) {
+					axios.get(chats_ajax.url, {params: {action: 'generate_token'}})
+						.then(function (response) {
+							this.chatUserToken = response.data
+							localStorage.setItem('token', response.data)
+						}.bind(this))
+						.catch(function (error) {
+							console.log(error)
+						})
+				}
+				else {
+					this.chatUserToken = localStorage.getItem('token')
+				}
 			}
 		},
 
@@ -49,6 +56,18 @@ var chatsUser = new Vue({
 				.catch(function (error) {
 					console.log(error)
 				})
+		},
+
+		updateMessageList() {
+			setInterval(function() {
+				axios.get(chats_ajax.url, {params: {action: 'get_messages_list', token: this.chatUserToken}})
+					.then(function (response) {
+						this.messageList = response.data
+					}.bind(this))
+					.catch(function (error) {
+						console.log(error)
+					})
+			}.bind(this), 3000)
 		},
 	},
 })
