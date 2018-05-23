@@ -69,8 +69,7 @@
     overflow-y: auto; }
     .chats-user-window ul li {
       margin: 0 0 10px 0;
-      padding: 0 50px 0 0;
-      font: 400 13px/18px 'Roboto', sans-serif; }
+      padding: 0 50px 0 0; }
       .chats-user-window ul li .message {
         display: block;
         padding: 10px;
@@ -83,6 +82,12 @@
         .chats-user-window ul li .message:hover {
           background: #3da0f0;
           box-shadow: -7px 7px 20px 0px #d0d0d0; }
+        .chats-user-window ul li .message .text {
+          margin: 0 0 5px 0;
+          font: 400 13px/18px 'Roboto', sans-serif; }
+        .chats-user-window ul li .message .date {
+          font: 400 10px/14px 'Roboto', sans-serif !important;
+          color: #A8A8A8; }
       .chats-user-window ul li.support {
         padding: 0 0 0 50px !important; }
         .chats-user-window ul li.support .message {
@@ -106,6 +111,18 @@
       border-radius: 6px;
       border: none;
       resize: none; }
+      .chats-user-window .form textarea::-webkit-input-placeholder {
+        padding: 15px;
+        color: #ABC8D7; }
+      .chats-user-window .form textarea:-moz-placeholder {
+        padding: 15px;
+        color: #ABC8D7; }
+      .chats-user-window .form textarea::-moz-placeholder {
+        padding: 15px;
+        color: #ABC8D7; }
+      .chats-user-window .form textarea:-ms-input-placeholder {
+        padding: 15px;
+        color: #ABC8D7; }
     .chats-user-window .form button {
       display: flex;
       justify-content: center;

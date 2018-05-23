@@ -14,13 +14,16 @@ function chats_app_tag() {
 			<span class="name">'.get_bloginfo('name').'</span>
 			<span class="close" @click="chatWindowOpen = false"></span>
 		</div>
-		<ul>
+		<ul class="messages-list">
 			<li v-for="item in messageList" v-bind:class="{ support: item.from == item.chat_id }">
-				<span class="message" v-html="item.message"></span>
+				<div class="message">
+					<div class="text" v-html="item.message"></div>
+					<div class="date">{{ timestampToDate(item.date) }}</div>
+				</div>
 			</li>
 		</ul>
 		<form action="/" class="form">
-			<textarea v-model="message" placeholder="Text message"></textarea>
+			<textarea v-model="message" placeholder="Ваше сообщение"></textarea>
 			<button type="button" @click="sendMessage()">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 				    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -29,7 +32,7 @@ function chats_app_tag() {
 			</button>
 		</form>
 	</div>
-	<div class="chats-user-open" v-if="!chatWindowOpen" @click="chatWindowOpen=true">
+	<div class="chats-user-open" v-if="!chatWindowOpen" @click="chatWindowOpen=true; scrollToBottom()">
 		<span class="logo"></span>
 	</div>
 </div>
