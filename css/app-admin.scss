@@ -1,0 +1,12 @@
+.chats-admin {
+	display: flex;
+	height: 100vh;
+
+	.chats-list {
+		flex: 1 1 280px;
+		background: #fff;
+	}
+	.chats-messages {
+		flex: 1;
+	}
+}
