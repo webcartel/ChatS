@@ -1,8 +1,36 @@
+#adminmenumain {
+  display: none; }
+
+#wpcontent {
+  margin-left: 0; }
+
+#wpbody {
+  position: static; }
+
+#wpfooter {
+  display: none; }
+
 .chats-admin {
-  display: flex;
-  height: 100vh; }
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex; }
   .chats-admin .chats-list {
-    flex: 1 1 280px;
+    flex: 1;
+    max-width: 290px;
     background: #fff; }
+    .chats-admin .chats-list .chat-item {
+      margin: 0 0 1px 0;
+      padding: 5px 5px 5px 5px;
+      background: #fff;
+      border-bottom: 1px solid #F1F1F1; }
+      .chats-admin .chats-list .chat-item:hover {
+        background: #F1F1F1; }
+      .chats-admin .chats-list .chat-item .chat-name {
+        padding: 5px 0;
+        font: 400 14px/18px "Roboto", sans-serif;
+        color: #333; }
   .chats-admin .chats-messages {
     flex: 1; }

@@ -1,10 +1,54 @@
+$f1: 'Roboto', sans-serif;
+
+@mixin placeholder {
+	&::-webkit-input-placeholder { @content; }
+	&:-moz-placeholder           { @content; }
+	&::-moz-placeholder          { @content; }
+	&:-ms-input-placeholder      { @content; }  
+}
+
+#adminmenumain {
+	display: none;
+}
+#wpcontent {
+	margin-left: 0;
+}
+#wpbody {
+	position: static;
+}
+#wpfooter {
+	display: none;
+}
+
 .chats-admin {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	display: flex;
-	height: 100vh;
 
 	.chats-list {
-		flex: 1 1 280px;
+		flex: 1;
+		max-width: 290px;
 		background: #fff;
+
+		.chat-item {
+			margin: 0 0 1px 0;
+			padding: 5px 5px 5px 5px;
+			background: #fff;
+			border-bottom: 1px solid #F1F1F1;
+
+			&:hover {
+				background: #F1F1F1;
+			}
+
+			.chat-name {
+				padding: 5px 0;
+				font: 400 14px/18px $f1;
+				color: #333;
+			}
+		}
 	}
 	.chats-messages {
 		flex: 1;

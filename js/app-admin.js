@@ -2,7 +2,17 @@ var chatsAdmin = new Vue({
 	el: '#chats-admin',
 
 	data: {
-		test: 'kjsdfhkjsdhfkjsdhkj',
+		chatList: [
+			{
+				name: 'Test name',
+			},
+			{
+				name: 'Test name 2',
+			},
+			{
+				name: 'Test name 2',
+			},
+		],
 	},
 
 	mounted: function() {
