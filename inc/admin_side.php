@@ -37,12 +37,18 @@ function chats_admin()
 <div id="chats-admin" class="chats-admin">
 	<div class="chats-list">
 		<div class="chat-item" v-for="chatItem in chatList">
-			<div class="chat-name">{{ chatItem.name }}</div>
+			<div class="chat-name" v-bind:class="{ online: chatItem.online }">{{ chatItem.name }}</div>
+			<div class="chat-lastmessage" v-html="shortString(chatItem.lastMessage)"></div>
+			<div class="chat-date" v-html="timestampToDate(chatItem.date)"></div>
 		</div>
 	</div>
 
 	<div class="chats-messages">
-		
+
+		<div class="message-block">
+			<div class="message" v-html=""></div>
+		</div>
+
 	</div>
 
 </div>

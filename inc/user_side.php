@@ -80,7 +80,6 @@ function save_user_message()
 	if ( $_POST['message'] != '' ) {
 		$data = array(
 			'from' => $_POST['token'],
-			'to' => get_current_user_id(),
 			'chat_id' => $_POST['token'],
 			'date' => time(),
 			'message' => $_POST['message']

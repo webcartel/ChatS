@@ -1,9 +1,3 @@
-#adminmenumain {
-  display: none; }
-
-#wpcontent {
-  margin-left: 0; }
-
 #wpbody {
   position: static; }
 
@@ -15,22 +9,76 @@
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0;
-  display: flex; }
+  left: 160px;
+  display: flex;
+  background: #fff; }
+  .chats-admin:before, .chats-admin:after {
+    content: " ";
+    display: table; }
+  .chats-admin:after {
+    clear: both; }
+  .chats-admin * {
+    box-sizing: border-box; }
   .chats-admin .chats-list {
     flex: 1;
-    max-width: 290px;
-    background: #fff; }
+    max-width: 400px;
+    background: #fff;
+    border-right: 1px solid #CFD8DC; }
     .chats-admin .chats-list .chat-item {
-      margin: 0 0 1px 0;
+      position: relative;
+      margin: 0 0 0 0;
       padding: 5px 5px 5px 5px;
+      height: 80px;
       background: #fff;
-      border-bottom: 1px solid #F1F1F1; }
-      .chats-admin .chats-list .chat-item:hover {
-        background: #F1F1F1; }
+      border-bottom: 1px solid #ECEFF1;
+      cursor: pointer; }
+      .chats-admin .chats-list .chat-item:before {
+        content: '';
+        position: absolute;
+        right: -1px;
+        top: -1px;
+        height: 0;
+        width: 4px;
+        background: #8BC34A;
+        transition: height 0.3s; }
+      .chats-admin .chats-list .chat-item:hover:before {
+        height: 81px; }
+      .chats-admin .chats-list .chat-item:hover .chat-name {
+        color: #37474F; }
+      .chats-admin .chats-list .chat-item:hover .chat-lastmessage {
+        color: #37474F; }
+      .chats-admin .chats-list .chat-item:hover .chat-date {
+        color: #546E7A; }
       .chats-admin .chats-list .chat-item .chat-name {
-        padding: 5px 0;
+        position: relative;
+        margin: 0 0 2px 20px;
+        padding: 5px 0 5px 5px;
         font: 400 14px/18px "Roboto", sans-serif;
-        color: #333; }
+        color: #607D8B;
+        transition: color 0.3s; }
+        .chats-admin .chats-list .chat-item .chat-name:before {
+          content: '';
+          position: absolute;
+          top: 8px;
+          left: -13px;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background: #d9e2e6; }
+        .chats-admin .chats-list .chat-item .chat-name.online:before {
+          background: #8BC34A; }
+      .chats-admin .chats-list .chat-item .chat-lastmessage {
+        padding: 0 10px 0 25px;
+        font: 400 13px/14px "Roboto", sans-serif;
+        color: #92afbd; }
+      .chats-admin .chats-list .chat-item .chat-date {
+        position: absolute;
+        bottom: 9px;
+        right: 10px;
+        font: 400 11px/11px "Roboto", sans-serif;
+        color: #92afbd;
+        transition: color 0.3s; }
   .chats-admin .chats-messages {
-    flex: 1; }
+    flex: 1;
+    max-width: 800px;
+    border-right: 1px solid #CFD8DC; }
