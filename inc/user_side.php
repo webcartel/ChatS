@@ -76,17 +76,45 @@ add_action( 'wp_ajax_nopriv_get_messages_list', 'get_messages_list' );
 function save_user_message()
 {
 	global $wpdb;
-	$table_name = $wpdb->get_blog_prefix() . CHATS_MESSAGE_TABLE_NAME;
+
+	$chats_message_table = $wpdb->get_blog_prefix() . CHATS_MESSAGE_TABLE_NAME;
+	$chats_connections_table = $wpdb->get_blog_prefix() . CHATS_CONNECTIONS_TABLE_NAME;
+
 	if ( $_POST['message'] != '' ) {
-		$data = array(
+
+		$chats_message_data = array(
 			'from' => $_POST['token'],
 			'chat_id' => $_POST['token'],
 			'date' => time(),
 			'message' => $_POST['message']
 		);
+		$chats_message_responce = $wpdb->insert( $chats_message_table, $chats_message_data);
+
+		if ( $wpdb->get_row("SELECT * FROM $chats_connections_table WHERE `chat_id` = ".$_POST['token'] ) != null ) {
+			$chats_connections_data = array(
+				'ip' => $_SERVER['REMOTE_ADDR'],
+				'name' => (isset($_POST['name']) && !empty($_POST['name'])) ? $_POST['name'] : '',
+				'email' => (isset($_POST['email']) && !empty($_POST['email'])) ? $_POST['email'] : '',
+				'last_message' => $_POST['message'],
+				'update_date' => time()
+			);
+			$chats_connections_responce = $wpdb->update( $chats_connections_table, $chats_connections_data, array('chat_id' => $_POST['token']) );
+		}
+		else {
+			$chats_connections_data = array(
+				'chat_id' => $_POST['token'],
+				'ip' => $_SERVER['REMOTE_ADDR'],
+				'name' => (isset($_POST['name']) && !empty($_POST['name'])) ? $_POST['name'] : '',
+				'email' => (isset($_POST['email']) && !empty($_POST['email'])) ? $_POST['email'] : '',
+				'last_message' => $_POST['message'],
+				'create_date' => time()
+			);
+			$chats_connections_responce = $wpdb->insert( $chats_connections_table, $chats_connections_data);
+		}
 	}
-	$responce = $wpdb->insert( $table_name, $data);
+
 	echo var_dump($responce);
+
 	exit();
 }
 add_action( 'wp_ajax_save_user_message', 'save_user_message' );
@@ -94,7 +122,8 @@ add_action( 'wp_ajax_nopriv_save_user_message', 'save_user_message' );
 
 function generate_token()
 {
-	echo md5(microtime() + rand());
+	echo time().rand();
+	exit();
 }
 add_action( 'wp_ajax_generate_token', 'generate_token' );
 add_action( 'wp_ajax_nopriv_generate_token', 'generate_token' );

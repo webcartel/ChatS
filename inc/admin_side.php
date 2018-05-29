@@ -36,17 +36,17 @@ function chats_admin()
 	echo '
 <div id="chats-admin" class="chats-admin">
 	<div class="chats-list">
-		<div class="chat-item" v-for="chatItem in chatList">
-			<div class="chat-name" v-bind:class="{ online: chatItem.online }">{{ chatItem.name }}</div>
-			<div class="chat-lastmessage" v-html="shortString(chatItem.lastMessage)"></div>
-			<div class="chat-date" v-html="timestampToDate(chatItem.date)"></div>
+		<div class="chat-item" @click="getChatMessages(chatItem.chat_id)" v-for="chatItem in connectionsList">
+			<div class="chat-name" v-bind:class="{ online: chatItem.chat_id }">{{ chatItem.chat_id }}</div>
+			<div class="chat-lastmessage" v-html="shortString(chatItem.last_message)"></div>
+			<div class="chat-date" v-html="timestampToDate(chatItem.create_date)"></div>
 		</div>
 	</div>
 
 	<div class="chats-messages">
 
-		<div class="message-block">
-			<div class="message" v-html=""></div>
+		<div class="message-block" v-if="messagesList.length > 0" v-for="messageItem in messagesList">
+			<div class="message" v-html="messageItem.message"></div>
 		</div>
 
 	</div>
@@ -54,3 +54,30 @@ function chats_admin()
 </div>
 ';
 }
+
+
+function get_connections_list()
+{
+	global $wpdb;
+	$chats_connections_table = $wpdb->get_blog_prefix() . CHATS_CONNECTIONS_TABLE_NAME;
+	$sql = "SELECT * FROM `". $chats_connections_table ."` WHERE 1 ORDER BY `update_date` ASC";
+	$responce = $wpdb->get_results($sql, ARRAY_A);
+	echo json_encode($responce);
+	exit();
+}
+add_action( 'wp_ajax_get_connections_list', 'get_connections_list' );
+
+
+function admin_get_messages_list()
+{
+	if ( isset($_GET['chat_id']) && !empty($_GET['chat_id']) ) {
+		$chat_id = $_GET['chat_id'];
+		global $wpdb;
+		$chats_message_table = $wpdb->get_blog_prefix() . CHATS_MESSAGE_TABLE_NAME;
+		$sql = "SELECT * FROM `". $chats_message_table ."` WHERE `chat_id`='" . $chat_id . "' ORDER BY `date` ASC";
+		$responce = $wpdb->get_results($sql, ARRAY_A);
+		echo json_encode($responce);
+		exit();
+	}
+}
+add_action( 'wp_ajax_admin_get_messages_list', 'admin_get_messages_list' );

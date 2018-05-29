@@ -41,15 +41,16 @@ function chats_activate() {
 	) {$charset_collate};";
 
 	$sql .= "CREATE TABLE {$chats_connections_table} (
-		`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-		`ip` VARCHAR(100) NOT NULL,
+		-- `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
 		`chat_id` VARCHAR(100) NOT NULL,
+		`ip` VARCHAR(100) NOT NULL,
 		`name` VARCHAR(100) NOT NULL,
 		`email` VARCHAR(100) NOT NULL,
 		`last_message` TEXT NOT NULL,
 		`create_date` INT(11) NOT NULL,
 		`update_date` INT(11) NOT NULL,
-		PRIMARY KEY (`id`)
+		PRIMARY KEY (`chat_id`),
+		UNIQUE (`chat_id`)
 	) {$charset_collate};";
 
 	dbDelta($sql);
