@@ -41,13 +41,13 @@
         width: 4px;
         background: #8BC34A;
         transition: height 0.3s; }
-      .chats-admin .chats-list .chat-item:hover:before {
+      .chats-admin .chats-list .chat-item.active:before, .chats-admin .chats-list .chat-item:hover:before {
         height: 81px; }
-      .chats-admin .chats-list .chat-item:hover .chat-name {
+      .chats-admin .chats-list .chat-item.active .chat-name, .chats-admin .chats-list .chat-item:hover .chat-name {
         color: #37474F; }
-      .chats-admin .chats-list .chat-item:hover .chat-lastmessage {
+      .chats-admin .chats-list .chat-item.active .chat-lastmessage, .chats-admin .chats-list .chat-item:hover .chat-lastmessage {
         color: #37474F; }
-      .chats-admin .chats-list .chat-item:hover .chat-date {
+      .chats-admin .chats-list .chat-item.active .chat-date, .chats-admin .chats-list .chat-item:hover .chat-date {
         color: #546E7A; }
       .chats-admin .chats-list .chat-item .chat-name {
         position: relative;
@@ -81,4 +81,14 @@
   .chats-admin .chats-messages {
     flex: 1;
     max-width: 800px;
-    border-right: 1px solid #CFD8DC; }
+    border-right: 1px solid #CFD8DC;
+    overflow-y: auto; }
+    .chats-admin .chats-messages .message-block {
+      padding: 5px 15px; }
+      .chats-admin .chats-messages .message-block .message {
+        display: block;
+        padding: 20px 10px;
+        background: #42A5F5;
+        border-radius: 20px;
+        color: #ffffff;
+        word-wrap: break-word; }

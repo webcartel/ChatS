@@ -40,6 +40,7 @@ var chatsAdmin = new Vue({
 			axios.get(ajaxurl, {params: {action: 'admin_get_messages_list', chat_id: chat_id}})
 				.then(function (response) {
 					this.messagesList = response.data
+					this.currentChatId = chat_id
 				}.bind(this))
 				.catch(function (error) {
 					console.log(error)

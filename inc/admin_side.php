@@ -36,7 +36,7 @@ function chats_admin()
 	echo '
 <div id="chats-admin" class="chats-admin">
 	<div class="chats-list">
-		<div class="chat-item" @click="getChatMessages(chatItem.chat_id)" v-for="chatItem in connectionsList">
+		<div class="chat-item" @click="getChatMessages(chatItem.chat_id)" v-bind:class="{ active: chatItem.chat_id == currentChatId }" v-for="chatItem in connectionsList">
 			<div class="chat-name" v-bind:class="{ online: chatItem.chat_id }">{{ chatItem.chat_id }}</div>
 			<div class="chat-lastmessage" v-html="shortString(chatItem.last_message)"></div>
 			<div class="chat-date" v-html="timestampToDate(chatItem.create_date)"></div>
@@ -60,7 +60,7 @@ function get_connections_list()
 {
 	global $wpdb;
 	$chats_connections_table = $wpdb->get_blog_prefix() . CHATS_CONNECTIONS_TABLE_NAME;
-	$sql = "SELECT * FROM `". $chats_connections_table ."` WHERE 1 ORDER BY `update_date` ASC";
+	$sql = "SELECT * FROM `". $chats_connections_table ."` WHERE 1 ORDER BY `update_date` DESC";
 	$responce = $wpdb->get_results($sql, ARRAY_A);
 	echo json_encode($responce);
 	exit();
