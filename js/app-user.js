@@ -39,7 +39,7 @@ var chatsUser = new Vue({
 
 			var form_data = new FormData;
 			form_data.append('token', this.chatUserToken)
-			form_data.append('message', this.message)
+			form_data.append('message', this.messageProcessing(this.message))
 			axios.post(chats_ajax.url + '?action=save_user_message', form_data)
 				.then(function (response) {
 					this.getMessagesList()
@@ -91,6 +91,12 @@ var chatsUser = new Vue({
 		    let seconds = t.getSeconds()
 		    let date = hours +':'+ minutes// +' '+ day +'.'+ month +'.'+ year
 		    return date
+		},
+
+		messageProcessing(message) {
+			message = message.replace(/(?:(?:https?|ftp):\/\/|\b(?:[a-z\d]+\.))(?:(?:[^\s()<>]+|\((?:[^\s()<>]+|(?:\([^\s()<>]+\)))?\))+(?:\((?:[^\s()<>]+|(?:\(?:[^\s()<>]+\)))?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))?/ig, '<a href="$&">$&</a>')
+			message = message.replace(/(\n|\r\n|\r)/g, '<br>')
+			return message
 		},
 	},
 })
